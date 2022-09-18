@@ -1,0 +1,11 @@
+apiVersion: v2
+name: prometheus
+version: 0.0.1
+description: A Helm wrapper chart for prometheus stack
+type: application
+sources:
+  - https://prometheus-community.github.io/helm-charts
+dependencies: # A list of the chart requirements (optional)
+  - name: kube-prometheus-stack
+    version: 40.0.2
+    repository: https://prometheus-community.github.io/helm-charts
