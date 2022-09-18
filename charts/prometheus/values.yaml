@@ -3,8 +3,4 @@ kube-prometheus-stack:
     ingress:
       enabled: true
       hosts:
-        - host: grafana.localhost
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
-          tls: []
+        - grafana.localhost
