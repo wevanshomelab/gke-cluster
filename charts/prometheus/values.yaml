@@ -1,4 +1,4 @@
-prometheus:
+kube-prometheus-stack:
   grafana:
     ingress:
       enabled: true
