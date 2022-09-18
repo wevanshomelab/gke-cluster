@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
+    namespace: monitoring
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
