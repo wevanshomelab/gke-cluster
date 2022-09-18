@@ -1,7 +1,8 @@
 kube-prometheus-stack:
+  prometheus-node-exporter:
+    hostRootFsMount: false
   nodeExporter:
     enabled: true
-    hostRootfs: false
   grafana:
     ingress:
       enabled: true
