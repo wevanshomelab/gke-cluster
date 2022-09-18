@@ -1,6 +1,7 @@
 kube-prometheus-stack:
   prometheus-node-exporter:
-    hostRootFsMount: false
+    hostRootFsMount:
+      enabled: false
   nodeExporter:
     enabled: true
   grafana:
