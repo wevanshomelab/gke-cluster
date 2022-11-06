@@ -8,3 +8,4 @@ sources:
 dependencies: # A list of the chart requirements (optional)
   - name: argo-cd
     version: 3.35.4
+    repository: https://argoproj.github.io/argo-helm
