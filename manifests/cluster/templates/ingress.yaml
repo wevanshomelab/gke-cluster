@@ -6,6 +6,10 @@ metadata:
 spec:
   destination:
     server: {{ .Values.spec.destination.server }}
+    namespace: ingress-controllers
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
   project: default
   source:
     path: charts/ingress
