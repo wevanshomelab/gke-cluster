@@ -7,6 +7,9 @@ spec:
   destination:
     namespace: monitoring
     server: {{ .Values.spec.destination.server }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
   project: default
   source:
     path: charts/prometheus
