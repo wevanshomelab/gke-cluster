@@ -8,6 +8,8 @@ spec:
     server: {{ .Values.spec.destination.server }}
     namespace: ingress-controllers
   syncPolicy:
+    automated:
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
   project: default
