@@ -5,6 +5,14 @@
 ## Server
 argo-cd:
   server:
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: true
+        nginx.ingress.kubernetes.io/ssl-passthrough: true
+      ingressClassName: nginx
+      hosts:
+        - argocd.localhost
     ## ArgoCD config
     ## reference https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
     configEnabled: true
