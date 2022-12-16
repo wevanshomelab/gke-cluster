@@ -26,7 +26,7 @@ spec:
   source:
     path: charts/kube-prometheus-stack/crds
     repoURL: https://github.com/prometheus-community/helm-charts.git
-    targetRevision: kube-prometheus-stack-41.2.0
+    targetRevision: kube-prometheus-stack-43.1.1
     helm:
   destination:
     server: {{ .Values.spec.destination.server }}
@@ -36,3 +36,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - Replace=true
