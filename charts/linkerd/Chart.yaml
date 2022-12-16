@@ -1,0 +1,14 @@
+apiVersion: v2
+name: linkerd
+version: 0.0.1
+description: A Helm wrapper chart for linkerd
+type: application
+sources:
+  - https://helm.linkerd.io/stable
+dependencies: # A list of the chart requirements (optional)
+  - name: linkerd-crds
+    version: 1.4.0
+    repository: https://helm.linkerd.io/stable
+  - name: linkerd-control-plane
+    version: 1.9.5
+    repository: https://helm.linkerd.io/stable
