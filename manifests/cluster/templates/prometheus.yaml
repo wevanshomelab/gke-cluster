@@ -30,7 +30,7 @@ spec:
     helm:
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: linkerd
+    namespace: monitoring
   syncPolicy:
     automated:
       selfHeal: true
