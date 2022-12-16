@@ -26,7 +26,7 @@ spec:
   source:
     path: charts/kube-prometheus-stack/crds
     repoURL: https://github.com/prometheus-community/helm-charts.git
-    targetRevision: kube-prometheus-stack-40.0.2
+    targetRevision: kube-prometheus-stack-41.2.0
     helm:
   destination:
     server: {{ .Values.spec.destination.server }}
