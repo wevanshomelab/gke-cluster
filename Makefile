@@ -13,6 +13,7 @@ generate-trust-anchor:
           --no-password \
           --not-after 43800h \
           --insecure
+	
 	kubectl -n linkerd create secret tls linkerd-trust-anchor \
 	  --cert trust.crt \
           --key trust.key \
