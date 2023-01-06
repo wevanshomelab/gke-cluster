@@ -1,4 +1,7 @@
-ingress-nginx:
-  controller:
-    extraArgs:
-      enable-ssl-passthrough: true
+linkerd-control-plane:
+  identityTrustAnchorsPEM: |
+    -----BEGIN CERTIFICATE-----
+    -----END CERTIFICATE-----
+  identity:
+    issuer:
+      scheme: kubernetes.io/tls

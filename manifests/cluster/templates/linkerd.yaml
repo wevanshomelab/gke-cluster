@@ -12,17 +12,9 @@ spec:
     syncOptions:
       - CreateNamespace=true
   source:
-    chart: linkerd-control-plane
-    repoURL: https://helm.linkerd.io/stable
-    targetRevision: 1.9.0
-    helm:
-      parameters:
-      - name: identityTrustAnchorsPEM
-        value: |
-          -----BEGIN CERTIFICATE-----
-          -----END CERTIFICATE-----
-      - name: identity.issuer.scheme
-        value: kubernetes.io/tls
+    path: charts/linkerd
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
   ignoreDifferences:
   - group: ""
     kind: Secret
