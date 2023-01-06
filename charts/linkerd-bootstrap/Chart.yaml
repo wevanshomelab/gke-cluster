@@ -1,0 +1,5 @@
+apiVersion: v2
+name: linkerd-bootstrap
+version: 0.0.1
+description: A Helm bootstrap chart for linkerd trust certificate and anchor
+type: application

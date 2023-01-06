@@ -23,4 +23,4 @@ generate-trust-anchor:
           -p '{"spec": {"template": {"type":"kubernetes.io/tls", "metadata": {"labels": {"linkerd.io/control-plane-component":"identity", "linkerd.io/control-plane-ns":"linkerd"}, "annotations": {"linkerd.io/created-by":"linkerd/cli stable-2.12.0"}}}}}' \
           --dry-run=client \
           --type=merge \
-          --local -oyaml > charts/linkerd/templates/trust-anchor.yaml
+          --local -oyaml > charts/linkerd-bootstrap/templates/trust-anchor.yaml

@@ -54,6 +54,26 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: linkerd-bootstrap
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: charts/linkerd-bootstrap
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: linkerd
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: linkerd-crds
   namespace: argocd
 spec:
