@@ -1,4 +1,6 @@
 linkerd-control-plane:
+  proxyInit:
+    privileged: true
   identityTrustAnchorsPEM: |
     -----BEGIN CERTIFICATE-----
     -----END CERTIFICATE-----
