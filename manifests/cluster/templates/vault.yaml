@@ -21,7 +21,5 @@ spec:
     server: {{ .Values.spec.destination.server }}
     namespace: vault
   syncPolicy:
-    automated:
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true
