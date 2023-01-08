@@ -23,3 +23,9 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+    - group: ""
+      kind: MutatingWebhookConfiguration
+      name: vault-agent-injector-cfg
+      jsonPointers:
+      - /webhooks/0/clientConfig/caBundle
