@@ -91,3 +91,22 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linkerd-viz
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: linkerd-viz
+    repoURL: https://helm.linkerd.io/stable
+    targetRevision: 30.3.5
+    helm:
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: linkerd
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
