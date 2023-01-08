@@ -1,4 +1,6 @@
 ingress-nginx:
   controller:
+    annotations:
+      linkerd.io/inject: enabled
     extraArgs:
       enable-ssl-passthrough: true
