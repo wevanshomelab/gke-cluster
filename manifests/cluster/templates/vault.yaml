@@ -24,7 +24,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
   ignoreDifferences:
-    - group: ""
+    - group: *
       kind: MutatingWebhookConfiguration
       name: vault-agent-injector-cfg
       jsonPointers:
