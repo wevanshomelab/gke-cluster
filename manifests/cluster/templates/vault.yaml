@@ -10,14 +10,12 @@ spec:
     targetRevision: 0.23.0
     helm:
       parameters:
-        - name: server
-          value:
-            affinity: ""
-            ha:
-              enabled: true
-              raft:
-                enabled: true
-
+        - name: server.affinity
+          value: ""
+        - name: server.ha.enabled
+          value: true
+        - name: server.ha.raft.enabled
+          value: true
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: vault
