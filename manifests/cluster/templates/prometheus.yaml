@@ -15,8 +15,6 @@ spec:
     path: charts/prometheus
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    helm:
-      skipCrds: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
