@@ -1,8 +1,19 @@
 # Description
 This is a homelab setup for getting a local k8s environment up and running, utilizing argocd and the ingress-nginx controller
 
+# Dependencies
+- git
+- kubectl
+- argocd-cli
+- linkerd-cli
+- step-cli
+- kubeseal
+- go-yq (yq v4)
+
 # Installation
 Assuming that you have a local k8s cluster up and running, and have kubectl / helm pointed to it
+
+If you want to run linkerd, run `make generate-trust-anchor` to create a new root CA for your linkerd install and then commit the changes to your fork.
 
 run `make install` from the root dir
 
@@ -16,7 +27,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 Then visit https://argocd.localhost 
 
-Some application that are not configured to auto sync will need to be installed from the UI or argocd cli
+Some applications that are not configured to auto sync will need to be installed from the UI or argocd cli
 
 # Cluster services
 ## Ingress
@@ -33,9 +44,7 @@ kubectl -n monitoring get secret prometheus-grafana -o jsonpath="{.data.admin-pa
 
 Then visit http://grafana.localhost
 
-
 # Applications
 ## Example nginx service
 This homelab create an example nginx service as a hello world application for testing
-
  

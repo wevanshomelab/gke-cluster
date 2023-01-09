@@ -1,4 +1,5 @@
 /charts/*/charts/*
 *Chart.lock
+cluster-keys.json
 trust.key
 trust.crt

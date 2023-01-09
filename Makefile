@@ -7,13 +7,15 @@ install:
 argo-password:
 	kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 
+grafana-password:
+	kubectl -n monitoring get secret prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d; echo
+
 generate-trust-anchor:
 	step-cli certificate create root.linkerd.cluster.local trust.crt trust.key \
           --profile root-ca \
           --no-password \
           --not-after 43800h \
           --insecure
-	
 	kubectl -n linkerd create secret tls linkerd-trust-anchor \
 	  --cert trust.crt \
           --key trust.key \
@@ -24,3 +26,5 @@ generate-trust-anchor:
           --dry-run=client \
           --type=merge \
           --local -oyaml > charts/linkerd-bootstrap/templates/trust-anchor.yaml
+	trust_anchor=$(cat trust.crt)
+	yq eval -i '.linkerd-control-plane.identityTrustAnchorsPEM = env(trust_anchor)' charts/linkerd/values.yaml
