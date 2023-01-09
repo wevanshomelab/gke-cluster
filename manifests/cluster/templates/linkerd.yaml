@@ -97,7 +97,7 @@ spec:
   - group: ""
     kind: CustomResourceDefinition
     jsonPointers:
-    - /spec/names/shortNames
+    - /spec/names
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
