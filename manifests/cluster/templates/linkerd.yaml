@@ -92,6 +92,12 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+  - group: ""
+    kind: CustomResourceDefinition
+    jsonPointers:
+    - /spec/names/shortNames
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
