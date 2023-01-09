@@ -11,6 +11,7 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
   source:
     path: charts/linkerd
     repoURL: {{ .Values.spec.source.repoURL }}
