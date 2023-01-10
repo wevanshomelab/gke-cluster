@@ -26,5 +26,4 @@ generate-trust-anchor:
           --dry-run=client \
           --type=merge \
           --local -oyaml > charts/linkerd-bootstrap/templates/trust-anchor.yaml
-	trust_anchor=$$(cat trust.crt) \
-	  yq eval -i ".linkerd-control-plane.identityTrustAnchorsPEM = env(trust_anchor)" charts/linkerd/values.yaml
+	yq eval -i '.linkerd-control-plane.identityTrustAnchorsPEM = "'"$$(< trust.crt)"'"' charts/linkerd/values.yaml
