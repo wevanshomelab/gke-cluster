@@ -12,17 +12,6 @@ argo-password:
 grafana-password:
 	kubectl -n monitoring get secret prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d; echo
 
-sync-linkerd-all: sync-linkerd-bootstrap sync-linkerd sync-linkerd-viz
-
-sync-linkerd-bootstrap:
-	argocd app sync linkerd-bootstrap
-
-sync-linkerd:
-	argocd app sync linkerd
-
-sync-linkerd-viz:
-	argocd app sync linker-viz
-
 generate-trust-anchor:
 	step-cli certificate create root.linkerd.cluster.local trust.crt trust.key \
           --profile root-ca \
