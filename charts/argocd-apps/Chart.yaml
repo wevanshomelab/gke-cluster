@@ -1,0 +1,11 @@
+apiVersion: v2
+name: argocd
+version: 0.0.1
+description: A Helm wrapper chart for argocd
+type: application
+sources:
+  - https://argoproj.github.io/argo-helm
+dependencies: # A list of the chart requirements (optional)
+  - name: argocd-apps
+    version: 0.0.6
+    repository: https://argoproj.github.io/argo-helm
