@@ -177,8 +177,8 @@ drone:
   ## variables, with each key/value mapping to a corresponding environment variable on the
   ## Drone server.
   ##
-  extraSecretNamesForEnvFrom: []
-  # - my-drone-secrets
+  extraSecretNamesForEnvFrom:
+    - drone-creds
 
   ## The keys within the "env" map are mounted as environment variables on the Drone server pod.
   ## See the full reference of Drone server environment variables here:
