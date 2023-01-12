@@ -15,3 +15,10 @@ spec:
     chart: gitlab
     repoURL: https://charts.gitlab.io
     targetRevision: 6.7.3
+    helm:
+      parameters:
+        - name: global.hosts.domain
+          value: gitlab.localhost
+        - name: certmanager-issuer.email
+          value: paul@wevans.io
+
