@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: blog
+  namespace: argocd
+spec:
+  destination:
+    namespace: test
+    server: {{ .Values.spec.destination.server }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+  project: default
+  source:
+    path: charts
+    repoURL: https://github.com/wevanscfi/blog.git
+    targetRevision: main
+    helm:
+      parameters:
+        - name: image.tag
+          value: "724641bfabb59b234a273de528464c0a35bd023e"
+      valueFiles:
+        - values.yaml
+        - dev-values.yaml
