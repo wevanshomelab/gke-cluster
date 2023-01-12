@@ -21,4 +21,6 @@ spec:
           value: gitlab.localhost
         - name: certmanager-issuer.email
           value: paul@wevans.io
+        - name: upgradeCheck.enabled
+          value: false
 
