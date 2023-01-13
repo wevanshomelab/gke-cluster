@@ -19,6 +19,8 @@ spec:
       parameters:
         - name: image.tag
           value: "724641bfabb59b234a273de528464c0a35bd023e"
+        - name: ingress.hosts[0].host
+          value: rails.localhost
       valueFiles:
         - values.yaml
         - dev-values.yaml
