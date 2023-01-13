@@ -14,7 +14,7 @@ spec:
   source:
     path: charts
     repoURL: https://github.com/wevanscfi/blog.git
-    targetRevision: "724641bfabb59b234a273de528464c0a35bd023e"
+    targetRevision: main
     helm:
       parameters:
         - name: image.tag
