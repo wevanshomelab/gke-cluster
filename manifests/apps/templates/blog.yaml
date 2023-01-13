@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     namespace: test
-    server: {{ .Values.spec.destination.server }}
+    server: "{{ .Values.spec.destination.server }}"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
