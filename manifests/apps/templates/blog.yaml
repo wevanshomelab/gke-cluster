@@ -18,7 +18,7 @@ spec:
     helm:
       parameters:
         - name: image.tag
-          value: "724641bfabb59b234a273de528464c0a35bd023e"
+          value: "e7591bcfc093c50e9f4fe9aaf1c0a8676499e21e"
         - name: ingress.hosts[0].host
           value: rails.localhost
       valueFiles:
