@@ -8,6 +8,8 @@ spec:
     namespace: test
     server: "{{ .Values.spec.destination.server }}"
   syncPolicy:
+    automated:
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
   project: default
