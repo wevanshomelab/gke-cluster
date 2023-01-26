@@ -72,7 +72,7 @@ argocd-apps:
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
-      project: argocd
+      project: applications
       source:
         path: manifests/apps
         repoURL: https://github.com/wevanscfi/homelab.git
@@ -86,7 +86,7 @@ argocd-apps:
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
-      project: argocd
+      project: cluster-services
       source:
         path: manifests/cluster
         repoURL: https://github.com/wevanscfi/homelab.git
