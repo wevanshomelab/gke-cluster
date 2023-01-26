@@ -111,7 +111,7 @@ spec:
     helm:
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: linkerd
+    namespace: linkerd-viz
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
