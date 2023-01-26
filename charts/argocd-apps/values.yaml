@@ -16,6 +16,36 @@ argocd-apps:
           kind: '*'
       orphanedResources:
         warn: false
+    - name: applications
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      description: Argocd Project
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: argocd
+          server: https://kubernetes.default.svc
+      clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+      orphanedResources:
+        warn: false
+    - name: cluster-services
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      description: Argocd Project
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: argocd
+          server: https://kubernetes.default.svc
+      clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+      orphanedResources:
+        warn: false
   applications:
     - name: argocd
       namespace: argocd
@@ -37,7 +67,7 @@ argocd-apps:
           prune: true
         syncOptions:
         - CreateNamespace=true
-    - name: argocd-apps
+    - name: applications
       namespace: argocd
       destination:
         namespace: argocd
@@ -51,7 +81,7 @@ argocd-apps:
         automated:
           selfHeal: true
           prune: true
-    - name: cluster
+    - name: cluster-services
       namespace: argocd
       destination:
         namespace: argocd

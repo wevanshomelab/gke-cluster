@@ -4,7 +4,7 @@ metadata:
   name: linkerd
   namespace: argocd
 spec:
-  project: default
+  project: cluster-services
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: linkerd
@@ -58,7 +58,7 @@ metadata:
   name: linkerd-bootstrap
   namespace: argocd
 spec:
-  project: default
+  project: cluster-services
   source:
     path: charts/linkerd-bootstrap
     repoURL: {{ .Values.spec.source.repoURL }}
@@ -76,7 +76,7 @@ metadata:
   name: linkerd-crds
   namespace: argocd
 spec:
-  project: default
+  project: cluster-services
   source:
     chart: linkerd-crds
     repoURL: https://helm.linkerd.io/stable
@@ -103,7 +103,7 @@ metadata:
   name: linkerd-viz
   namespace: argocd
 spec:
-  project: default
+  project: cluster-services
   source:
     chart: linkerd-viz
     repoURL: https://helm.linkerd.io/stable
@@ -111,7 +111,7 @@ spec:
     helm:
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: linkerd-viz
+    namespace: linkerd
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
