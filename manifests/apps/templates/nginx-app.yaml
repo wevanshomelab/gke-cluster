@@ -10,7 +10,7 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-  project: default
+  project: applications
   source:
     path: charts/nginx-app
     repoURL: {{ .Values.spec.source.repoURL }}

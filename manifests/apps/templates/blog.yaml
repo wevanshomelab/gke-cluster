@@ -12,7 +12,7 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-  project: default
+  project: applications
   source:
     path: charts
     repoURL: https://github.com/wevanscfi/blog.git
