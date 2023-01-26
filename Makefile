@@ -13,21 +13,22 @@ grafana-password:
 	@kubectl -n monitoring get secret prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d; echo
 
 generate-trust-anchor:
-	@step-cli certificate create root.linkerd.cluster.local trust.crt trust.key \
-          --profile root-ca \
-          --no-password \
-          --not-after 43800h \
-          --insecure
+	@test -f "trust.key" && echo "using exsisting key" || \
+	  step-cli certificate create root.linkerd.cluster.local trust.crt trust.key \
+	  --profile root-ca \
+	  --no-password \
+	  --not-after 43800h \
+	  --insecure
 	@kubectl -n linkerd create secret tls linkerd-trust-anchor \
 	  --cert trust.crt \
-          --key trust.key \
+	  --key trust.key \
 	  --dry-run=client -oyaml | \
-        kubeseal --controller-name=sealed-secrets -oyaml - | \
-        kubectl patch -f - \
-          -p '{"spec": {"template": {"type":"kubernetes.io/tls", "metadata": {"labels": {"linkerd.io/control-plane-component":"identity", "linkerd.io/control-plane-ns":"linkerd"}, "annotations": {"linkerd.io/created-by":"linkerd/cli stable-2.12.0"}}}}}' \
-          --dry-run=client \
-          --type=merge \
-          --local -oyaml > charts/linkerd-bootstrap/templates/trust-anchor.yaml
+	kubeseal --controller-name=sealed-secrets -oyaml - | \
+	kubectl patch -f - \
+	  -p '{"spec": {"template": {"type":"kubernetes.io/tls", "metadata": {"labels": {"linkerd.io/control-plane-component":"identity", "linkerd.io/control-plane-ns":"linkerd"}, "annotations": {"linkerd.io/created-by":"linkerd/cli stable-2.12.0"}}}}}' \
+	  --dry-run=client \
+	  --type=merge \
+	  --local -oyaml > charts/linkerd-bootstrap/templates/trust-anchor.yaml
 	@yq eval -i '.linkerd-control-plane.identityTrustAnchorsPEM = "'"$$(< trust.crt)"'"' charts/linkerd/values.yaml
 
 set-drone-creds:
