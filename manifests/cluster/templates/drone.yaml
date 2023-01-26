@@ -10,7 +10,7 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-  project: default
+  project: cluster-services
   source:
     path: charts/drone
     repoURL: {{ .Values.spec.source.repoURL }}

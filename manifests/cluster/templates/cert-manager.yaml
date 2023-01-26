@@ -13,7 +13,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - Validate=false
-  project: default
+  project: cluster-services
   source:
     chart: cert-manager
     repoURL: https://charts.jetstack.io

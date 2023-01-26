@@ -10,7 +10,7 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-  project: default
+  project: cluster-services
   source:
     path: charts/prometheus
     repoURL: {{ .Values.spec.source.repoURL }}
@@ -24,7 +24,7 @@ metadata:
   name: prometheus-crds
   namespace: argocd
 spec:
-  project: default
+  project: cluster-services
   source:
     path: charts/kube-prometheus-stack/crds
     repoURL: https://github.com/prometheus-community/helm-charts.git

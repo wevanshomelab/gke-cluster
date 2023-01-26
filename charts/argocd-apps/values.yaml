@@ -20,7 +20,7 @@ argocd-apps:
       namespace: argocd
       additionalLabels: {}
       additionalAnnotations: {}
-      description: Argocd Project
+      description: User Applications
       sourceRepos:
         - '*'
       destinations:
@@ -35,7 +35,7 @@ argocd-apps:
       namespace: argocd
       additionalLabels: {}
       additionalAnnotations: {}
-      description: Argocd Project
+      description: Core Cluster Services
       sourceRepos:
         - '*'
       destinations:
