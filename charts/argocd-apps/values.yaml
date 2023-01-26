@@ -24,7 +24,7 @@ argocd-apps:
       sourceRepos:
         - '*'
       destinations:
-        - namespace: argocd
+        - namespace: test
           server: https://kubernetes.default.svc
       clusterResourceWhitelist:
         - group: '*'
@@ -39,7 +39,7 @@ argocd-apps:
       sourceRepos:
         - '*'
       destinations:
-        - namespace: argocd
+        - namespace: '*'
           server: https://kubernetes.default.svc
       clusterResourceWhitelist:
         - group: '*'
