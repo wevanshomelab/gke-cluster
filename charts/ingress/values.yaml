@@ -4,8 +4,6 @@ ingress-nginx:
       linkerd.io/inject: enabled
     extraArgs:
       enable-ssl-passthrough: true
-    service:
-      type: NodePort
     admissionWebhooks:
       enabled: false
 
