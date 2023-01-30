@@ -32,4 +32,6 @@ argo-cd:
             config:
               clientID: fe519b758cce7aa69b42
               clientSecret: $dex.github.clientSecret
+              orgs:
+                - name: WevansHomeLab
 
