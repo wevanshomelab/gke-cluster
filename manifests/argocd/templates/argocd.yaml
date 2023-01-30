@@ -18,7 +18,7 @@ spec:
       version: v3
       valueFiles:
       - values.yaml
-      parameters
+      parameters:
       - name: "argo-cd.server.ingress.hosts[0]"
         value: "argocd.{{ .Values.spec.cluster.baseDomain }}"
     path: charts/argocd
