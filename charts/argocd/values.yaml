@@ -30,7 +30,7 @@ argo-cd:
             id: github
             name: GitHub
             config:
-              clientID: 1f8518c59d564db08774
+              clientID: fe519b758cce7aa69b42
               clientSecret: $dex.github.clientSecret
               orgs:
                 - name: WevansHomeLab
