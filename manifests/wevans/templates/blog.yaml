@@ -25,7 +25,7 @@ spec:
           value: rails.{{ .Values.spec.cluster.baseDomain }}
         - name: ingress.tls[0].hosts[0]
           value: rails.{{ .Values.spec.cluster.baseDomain }}
-        - name: ingress.cert-issuer
+        - name: ingress.issuer
           value: lets-encrypt
       valueFiles:
         - values.yaml
