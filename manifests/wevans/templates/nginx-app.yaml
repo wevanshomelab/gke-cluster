@@ -5,12 +5,12 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: test
+    namespace: wevans
     server: {{ .Values.spec.destination.server }}
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-  project: applications
+  project: wevans
   source:
     path: charts/nginx-app
     repoURL: {{ .Values.spec.source.repoURL }}

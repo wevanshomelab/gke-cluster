@@ -5,14 +5,14 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: test
+    namespace: wevans
     server: "{{ .Values.spec.destination.server }}"
   syncPolicy:
     automated:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-  project: applications
+  project: wevans
   source:
     path: charts
     repoURL: https://github.com/wevanscfi/blog.git
