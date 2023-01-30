@@ -28,7 +28,7 @@ spec:
         - name: ingress.tls[0].secretName
           value: blog-tls
         - name: ingress.issuer
-          value: lets-encrypt
+          value: letsencrypt
       valueFiles:
         - values.yaml
         - dev-values.yaml
