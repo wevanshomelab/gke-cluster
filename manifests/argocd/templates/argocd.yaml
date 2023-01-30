@@ -19,8 +19,8 @@ spec:
       valueFiles:
       - values.yaml
       parameters
-      - name: argo-cd.server.ingress.hosts[0]
-        value: argocd.{{ .Values.spec.cluster.baseDomain }}
+      - name: "argo-cd.server.ingress.hosts[0]"
+        value: "argocd.{{ .Values.spec.cluster.baseDomain }}"
     path: charts/argocd
     repoURL: https://github.com/wevanscfi/homelab.git
     targetRevision: HEAD
