@@ -17,21 +17,21 @@ argo-cd:
     ## reference https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
     configEnabled: true
     config:
+      url: "argocd.gke.wevans.io"
       repositories: |
         - type: git
           url: https://github.com/wevanscfi/homelab.git
         - name: argo-helm
           type: helm
           url: https://argoproj.github.io/argo-helm
-  configs:
-    dex.config: |
-      connectors:
-        - type: github
-          id: github
-          name: GitHub
-          config:
-            clientID: 1f8518c59d564db08774
-            clientSecret: $dex.github.clientSecret
-            orgs:
-              - name: WevansHomeLab
+      dex.config: |
+        connectors:
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: 1f8518c59d564db08774
+              clientSecret: $dex.github.clientSecret
+              orgs:
+                - name: WevansHomeLab
 
