@@ -68,7 +68,7 @@ argocd-apps:
         server: https://kubernetes.default.svc
       project: argocd
       source:
-        path: manifests/cluster
+        path: manifests/cluster-services
         repoURL: https://github.com/wevanscfi/homelab.git
         targetRevision: HEAD
       syncPolicy:
