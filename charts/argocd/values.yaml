@@ -17,7 +17,7 @@ argo-cd:
     ## reference https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
     configEnabled: true
     config:
-      url: "argocd.gke.wevans.io"
+      url: "https://argocd.gke.wevans.io"
       repositories: |
         - type: git
           url: https://github.com/wevanscfi/homelab.git
