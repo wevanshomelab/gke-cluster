@@ -31,8 +31,8 @@ spec:
           value: blog-tls
         - name: ingress.issuer
           value: letsencrypt
-        - name: rails_env
-          value: production
+        - name: application.env.base_host
+          value: rails.gke.wevans.io
       valueFiles:
         - values.yaml
 
