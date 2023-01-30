@@ -1,0 +1,5 @@
+encryptionsalt: v1:1uUo9wxOqQ0=:v1:jvrtGJMCPcuk1/IW:1q8qkKDY/XziWefMfGaW0iE8+ytP9Q==
+config:
+  gcp:project: homelab-376317
+  gcp:region: us-east1
+  infra:nodesPerZone: "1"
