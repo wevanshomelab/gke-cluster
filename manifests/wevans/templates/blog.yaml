@@ -8,8 +8,6 @@ spec:
     namespace: wevans
     server: "{{ .Values.spec.destination.server }}"
   syncPolicy:
-    automated:
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true
   project: wevans
