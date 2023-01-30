@@ -16,7 +16,7 @@ argocd-apps:
           kind: '*'
       orphanedResources:
         warn: false
-    - name: applications
+    - name: wevans
       namespace: argocd
       additionalLabels: {}
       additionalAnnotations: {}
@@ -24,7 +24,7 @@ argocd-apps:
       sourceRepos:
         - '*'
       destinations:
-        - namespace: test
+        - namespace: wevans
           server: https://kubernetes.default.svc
       clusterResourceWhitelist:
         - group: '*'
@@ -47,54 +47,14 @@ argocd-apps:
       orphanedResources:
         warn: false
   applications:
-    - name: argocd
+    - name: wevans
       namespace: argocd
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
       project: argocd
       source:
-        helm:
-          version: v3
-          valueFiles:
-          - values.yaml
-        path: charts/argocd
-        repoURL: https://github.com/wevanscfi/homelab.git
-        targetRevision: HEAD
-      syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
-        syncOptions:
-        - CreateNamespace=true
-    - name: argocd-apps
-      namespace: argocd
-      destination:
-        namespace: argocd
-        server: https://kubernetes.default.svc
-      project: argocd
-      source:
-        helm:
-          version: v3
-          valueFiles:
-          - values.yaml
-        path: charts/argocd-apps
-        repoURL: https://github.com/wevanscfi/homelab.git
-        targetRevision: HEAD
-      syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
-        syncOptions:
-        - CreateNamespace=true
-    - name: user-applications
-      namespace: argocd
-      destination:
-        namespace: argocd
-        server: https://kubernetes.default.svc
-      project: argocd
-      source:
-        path: manifests/apps
+        path: manifests/wevans
         repoURL: https://github.com/wevanscfi/homelab.git
         targetRevision: HEAD
       syncPolicy:
@@ -109,6 +69,20 @@ argocd-apps:
       project: argocd
       source:
         path: manifests/cluster
+        repoURL: https://github.com/wevanscfi/homelab.git
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+    - name: argocd
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        path: manifests/argocd
         repoURL: https://github.com/wevanscfi/homelab.git
         targetRevision: HEAD
       syncPolicy:

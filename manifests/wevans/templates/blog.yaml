@@ -22,7 +22,8 @@ spec:
         - name: image.tag
           value: "e7591bcfc093c50e9f4fe9aaf1c0a8676499e21e"
         - name: ingress.hosts[0].host
-          value: rails.localhost
+          value: rails.{{ .Values.spec.cluster.baseDomain }}
       valueFiles:
         - values.yaml
         - dev-values.yaml
+

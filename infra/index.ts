@@ -22,6 +22,27 @@ const gkeSubnet = new gcp.compute.Subnetwork("gke-subnet", {
     privateIpGoogleAccess: true,
 });
 
+const gkeRouter = new gcp.compute.Router("gke-router", {
+    region: gkeSubnet.region,
+    network: gkeNetwork.id,
+    bgp: {
+        asn: 64514,
+    },
+});
+
+const gkeNat = new gcp.compute.RouterNat("gke-nat", {
+    router: gkeRouter.name,
+    region: gkeRouter.region,
+    natIpAllocateOption: "AUTO_ONLY",
+    sourceSubnetworkIpRangesToNat: "ALL_SUBNETWORKS_ALL_IP_RANGES",
+    logConfig: {
+        enable: true,
+        filter: "ERRORS_ONLY",
+    },
+});
+
+
+
 // Create a new GKE cluster
 const gkeCluster = new gcp.container.Cluster("gke-cluster", {
     addonsConfig: {
