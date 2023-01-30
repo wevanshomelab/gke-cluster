@@ -21,6 +21,8 @@ spec:
           value: "e7591bcfc093c50e9f4fe9aaf1c0a8676499e21e"
         - name: ingress.enabled
           value: 'true'
+        - name: ingress.className
+          value: nginx
         - name: ingress.hosts[0].host
           value: rails.{{ .Values.spec.cluster.baseDomain }}
         - name: ingress.tls[0].hosts[0]
