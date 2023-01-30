@@ -18,7 +18,7 @@ spec:
     helm:
       parameters:
         - name: image.tag
-          value: "e7591bcfc093c50e9f4fe9aaf1c0a8676499e21e"
+          value: "8421152a7e55a8693cd74f8ee58674bebe4b4b14"
         - name: ingress.enabled
           value: 'true'
         - name: ingress.className
@@ -35,4 +35,3 @@ spec:
           value: rails.gke.wevans.io
       valueFiles:
         - values.yaml
-
