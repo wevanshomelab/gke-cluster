@@ -34,6 +34,7 @@ argo-cd:
               clientSecret: $dex.github.clientSecret
               orgs:
                 - name: WevansHomeLab
+    rbacConfig:
       policy.default: role:readonly
       policy.csv: |
         g, WevansHomeLab:admins, role:admin
