@@ -96,7 +96,7 @@ const gkeNodepool = new gcp.container.NodePool("gke-nodepool", {
     nodeCount: nodesPerZone,
     nodeConfig: {
         preemptible: true,
-        machineType: "e2-medium",
+        machineType: "n1-standard-2",
         oauthScopes: ["https://www.googleapis.com/auth/cloud-platform"],
         serviceAccount: gkeNodepoolSa.email,
     },
