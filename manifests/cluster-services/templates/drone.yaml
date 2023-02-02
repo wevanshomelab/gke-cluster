@@ -19,6 +19,8 @@ spec:
       parameters:
         - name: drone.ingress.enabled
           value: 'true'
+        - name: drone.env.DRONE_SERVER_HOST
+          value: drone.{{ .Values.spec.cluster.baseDomain }}
         - name: drone.ingress.className
           value: nginx
         - name: drone.ingress.hosts[0].host
