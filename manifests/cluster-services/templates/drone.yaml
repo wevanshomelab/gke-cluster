@@ -15,4 +15,17 @@ spec:
     path: charts/drone
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-
+    helm:
+      parameters:
+        - name: ingress.enabled
+          value: 'true'
+        - name: ingress.className
+          value: nginx
+        - name: ingress.hosts[0].host
+          value: drone.{{ .Values.spec.cluster.baseDomain }}
+        - name: ingress.tls[0].hosts[0]
+          value: drone.{{ .Values.spec.cluster.baseDomain }}
+        - name: ingress.tls[0].secretName
+          value: drone-tls
+        - name: ingress.issuer
+          value: letsencrypt
