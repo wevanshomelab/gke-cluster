@@ -1,0 +1,23 @@
+---
+baseProject: argocd
+baseNamespace: argocd
+baseServer: https://kubernetes.default.svc
+
+defaultProjectSettings:
+  description: User Application
+  sourceRepos:
+    - '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  orphanedResources:
+    warn: false
+
+projects:
+  - name: wevans
+    source:
+      path: manifests/wevans
+      repoURL: https://github.com/wevanscfi/homelab.git
+      targetRevision: HEAD
+
+

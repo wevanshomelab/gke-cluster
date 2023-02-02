@@ -3,8 +3,6 @@ argocd-apps:
   projects:
     - name: argocd
       namespace: argocd
-      additionalLabels: {}
-      additionalAnnotations: {}
       description: Argocd Project
       sourceRepos:
         - '*'
@@ -16,25 +14,8 @@ argocd-apps:
           kind: '*'
       orphanedResources:
         warn: false
-    - name: wevans
-      namespace: argocd
-      additionalLabels: {}
-      additionalAnnotations: {}
-      description: User Applications
-      sourceRepos:
-        - '*'
-      destinations:
-        - namespace: wevans
-          server: https://kubernetes.default.svc
-      clusterResourceWhitelist:
-        - group: '*'
-          kind: '*'
-      orphanedResources:
-        warn: false
     - name: cluster-services
       namespace: argocd
-      additionalLabels: {}
-      additionalAnnotations: {}
       description: Core Cluster Services
       sourceRepos:
         - '*'
@@ -47,14 +28,42 @@ argocd-apps:
       orphanedResources:
         warn: false
   applications:
-    - name: wevans
+    - name: argocd
       namespace: argocd
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
       project: argocd
       source:
-        path: manifests/wevans
+        path: charts/argocd
+        repoURL: https://github.com/wevanscfi/homelab.git
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+    - name: argocd-apps
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        path: charts/argocd-apps
+        repoURL: https://github.com/wevanscfi/homelab.git
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+    - name: user-services
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        path: charts/user-services
         repoURL: https://github.com/wevanscfi/homelab.git
         targetRevision: HEAD
       syncPolicy:
@@ -69,20 +78,6 @@ argocd-apps:
       project: argocd
       source:
         path: manifests/cluster-services
-        repoURL: https://github.com/wevanscfi/homelab.git
-        targetRevision: HEAD
-      syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
-    - name: argocd-service
-      namespace: argocd
-      destination:
-        namespace: argocd
-        server: https://kubernetes.default.svc
-      project: argocd
-      source:
-        path: manifests/argocd-service
         repoURL: https://github.com/wevanscfi/homelab.git
         targetRevision: HEAD
       syncPolicy:

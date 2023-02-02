@@ -1,9 +1,0 @@
-spec:
-  cluster:
-    baseDomain: gke.wevans.io
-  destination:
-    server: https://kubernetes.default.svc
-  source:
-    repoURL: https://github.com/wevanscfi/homelab.git
-    targetRevision: main
-

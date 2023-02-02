@@ -12,9 +12,7 @@ argo-cd:
         nginx.ingress.kubernetes.io/ssl-passthrough: true
       ingressClassName: nginx
       hosts:
-        - argocd.localhost
-    ## ArgoCD config
-    ## reference https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
+        - argocd.gke.wevans.io
     configEnabled: true
     config:
       url: "https://argocd.gke.wevans.io"

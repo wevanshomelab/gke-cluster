@@ -1,0 +1,38 @@
+{{- range .Values.projects }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  {{- with .additionalAnnotations }}
+  annotations:
+    {{- range $key, $value := . }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+  {{- with .additionalLabels }}
+  labels:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  name: {{ tpl .name $ }}
+  namespace: {{ $.Values.baseNamespace }}
+  {{- with .finalizers }}
+  finalizers:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  project: {{ $.Values.baseProject }}
+  source:
+    {{- toYaml .source | nindent 4 }}
+  destination:
+    namespace: {{ $.Values.baseNamespace }}
+    server:  {{ $.Values.baseServer }}
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  {{- with .info }}
+  info:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
+
