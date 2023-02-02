@@ -1,7 +1,42 @@
 # Description
-This is a project for getting a homelab K8s cluster set up in Google Cloud Services. 
+This is a project for getting a small personal K8s cluster set up in Google Cloud Services. It is intended to host a few personal projects and act as a sandbox environment for trying out new tools.
 
-# Dependencies
+# On Boarding 
+### Access to cluster services
+Git added to the github org `WevansHomeLab` for OAuth access to cluster services
+
+### Create a new project
+Create a pull request to add a new project for your self under [user-projects](https://github.com/wevanscfi/homelab/blob/main/manifests/user-projects/values.yaml) 
+
+Example:
+```
+projects:
+  - name: wevans
+    source:
+      path: manifests/wevans
+      repoURL: https://github.com/wevanscfi/homelab.git
+      targetRevision: HEAD
+```
+This will create a new ArgoCd project, a K8s namespace for your project, and an ArgoCD application utilizing the source that you specify. It is recommended to utilize a separate gitops repo for your project as your source.
+
+### View the results of applying your projects state
+Once your PR is merged, your project will auto sync and the resources specified will be created. ArgoCD will continuously deploy changes that you make to your gitops repo.
+You can see the result of your projects apply by visting http://argocd.gke.wevans.io and searching for applications under your project name.
+
+### Shipping updates
+It is recommended that you set up a CI pipeline to build your projects artifacts, and to update your gitops repo. You can utilize a third party CI service such as: circleCI, semaphoreCI, github actions, etc.. 
+You may also utilize the installation of drone running on this cluster. You can visit https://drone.gke.wevans.io to setup drone OAuth to github and setup your project.
+
+### Advanced project support / configuration
+Contact admin@wevans.io for support of the following advanced features. Better support and documentation is coming in the future.
+- Working with private git repos, docker image repos, or other artifact stores.
+- Secrets management
+- Database operators 
+
+# Cluster Installation and Administration
+You will need a fork of this repo for your own homelab. You will be modifying configuration such as cluster base domain, and generating your own sealed secrets.
+
+## Dependencies
 - git
 - kubectl
 - argocd-cli
@@ -11,9 +46,6 @@ This is a project for getting a homelab K8s cluster set up in Google Cloud Servi
 - go-yq (yq v4)
 - pulumi
 - gcloud-cli
-
-# Installation
-You will need a fork of this repo for your own homelab.
 
 ## Create the GCP GKE Cluster and other resources
 From the infra dir
@@ -34,12 +66,12 @@ This will run an initial helm install of argocd and set it up to self manage and
 
 To access argocd once installed, get the admin user password from the k8s secret `make argocd-password`
 
-Then visit https://argocd.<cluster-base-domain>
+Then visit https://argocd.gke.wevans.io
 
 You should also login to the cli by running
 
 ```
-argocd login argocd.<cluster-base-domain>
+argocd login argocd.gke.wevans.io
 ```
 
 ## Linkerd
@@ -97,7 +129,7 @@ To access the grafana dashboard, get the admin user secret
 make grafana-password
 ```
 
-Then visit http://grafana.<cluster-base-domain>
+Then visit http://grafana.gke.wevans.io
 
 ## Sealed-Secrets
 sealed-secrets is installed to handle asymetric encryption of secrets that need to be committed into source control. This is a Development use case, and it is not recommended to utilize this method in a production environment.
