@@ -23,6 +23,10 @@ spec:
           value: drone.{{ .Values.spec.cluster.baseDomain }}
         - name: drone.env.DRONE_SERVER_PROTO
           value: https
+        - name: drone-runner-docker.env.DRONE_RPC_HOST
+          value: drone.{{ .Values.spec.cluster.baseDomain }}
+        - name: drone-runner-docker.env.DRONE_RPC_PROTO
+          value: https
         - name: drone.env.DRONE_USER_FILTER
           value: "wevanscfi,WevansHomeLab"
         - name: drone.ingress.className
