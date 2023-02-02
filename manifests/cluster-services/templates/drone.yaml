@@ -23,9 +23,13 @@ spec:
           value: nginx
         - name: drone.ingress.hosts[0].host
           value: drone.{{ .Values.spec.cluster.baseDomain }}
+        - name: drone.ingress.hosts[0].paths[0].path
+          value: /
+        - name: drone.ingress.hosts[0].paths[0].pathType
+          value: Prefix
         - name: drone.ingress.tls[0].hosts[0]
           value: drone.{{ .Values.spec.cluster.baseDomain }}
         - name: drone.ingress.tls[0].secretName
           value: drone-tls
-        - name: drone.ingress.issuer
+        - name: drone.ingress.annotations.cert-manager\.io\/cluster-issuer
           value: letsencrypt
