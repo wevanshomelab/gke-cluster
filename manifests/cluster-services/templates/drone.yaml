@@ -21,6 +21,10 @@ spec:
           value: 'true'
         - name: drone.env.DRONE_SERVER_HOST
           value: drone.{{ .Values.spec.cluster.baseDomain }}
+        - name: drone.env.DRONE_SERVER_PROTO
+          value: https
+        - name: drone.env.DRONE_USER_FILTER
+          value: "wevanscfi,WevansHomeLab"
         - name: drone.ingress.className
           value: nginx
         - name: drone.ingress.hosts[0].host
