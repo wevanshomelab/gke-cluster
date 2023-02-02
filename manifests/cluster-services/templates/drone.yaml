@@ -17,15 +17,15 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       parameters:
-        - name: ingress.enabled
+        - name: drone.ingress.enabled
           value: 'true'
-        - name: ingress.className
+        - name: drone.ingress.className
           value: nginx
-        - name: ingress.hosts[0].host
+        - name: drone.ingress.hosts[0].host
           value: drone.{{ .Values.spec.cluster.baseDomain }}
-        - name: ingress.tls[0].hosts[0]
+        - name: drone.ingress.tls[0].hosts[0]
           value: drone.{{ .Values.spec.cluster.baseDomain }}
-        - name: ingress.tls[0].secretName
+        - name: drone.ingress.tls[0].secretName
           value: drone-tls
-        - name: ingress.issuer
+        - name: drone.ingress.issuer
           value: letsencrypt
