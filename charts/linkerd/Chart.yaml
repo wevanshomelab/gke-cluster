@@ -7,5 +7,5 @@ sources:
   - https://helm.linkerd.io/stable
 dependencies: # A list of the chart requirements (optional)
   - name: linkerd-control-plane
-    version: 1.9.0
+    version: 1.9.5
     repository: https://helm.linkerd.io/stable
