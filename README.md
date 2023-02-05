@@ -3,10 +3,10 @@ This is a project for getting a small personal K8s cluster set up in Google Clou
 
 # On Boarding 
 ### Access to cluster services
-Git added to the github org `WevansHomeLab` for OAuth access to cluster services
+Get added to the github org `WevansHomeLab` for OAuth access to cluster services
 
 ### Create a new project
-Create a pull request to add a new project for your self under [user-projects](https://wevanshomelab/gke-cluster/blob/main/manifests/user-projects/values.yaml) 
+Create a pull request to add a new project for your self under [user-projects](https://github.com/wevanshomelab/gke-cluster/blob/main/manifests/user-projects/values.yaml) 
 
 Example:
 ```
@@ -14,10 +14,10 @@ projects:
   - name: wevans
     source:
       path: manifests/wevans
-      repoURL: https://wevanshomelab/gke-cluster.git
+      repoURL: https://github.com/wevanshomelab/gke-cluster.git
       targetRevision: HEAD
 ```
-This will create a new ArgoCd project, a K8s namespace for your project, and an ArgoCD application utilizing the source that you specify. It is recommended to utilize a separate gitops repo for your project as your source.
+This will create a new ArgoCd project, a K8s namespace for your project, and an ArgoCD application utilizing the source that you specify. It is recommended to utilize a separate gitops repo as your source.
 
 ### View the results of applying your projects state
 Once your PR is merged, your project will auto sync and the resources specified will be created. ArgoCD will continuously deploy changes that you make to your gitops repo.
