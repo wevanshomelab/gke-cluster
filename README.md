@@ -3,7 +3,7 @@ This is a project for getting a small personal K8s cluster set up in Google Clou
 
 # On Boarding 
 ### Access to cluster services
-Get added to the github org `WevansHomeLab` for OAuth access to cluster services
+Get added to the github org `wevanshomelab` for OAuth access to cluster services
 
 ### Create a new project
 Create a pull request to add a new project for your self under [user-projects](https://github.com/wevanshomelab/gke-cluster/blob/main/manifests/user-projects/values.yaml) 
@@ -14,9 +14,10 @@ projects:
   - name: wevans
     source:
       path: manifests/wevans
-      repoURL: https://github.com/wevanshomelab/gke-cluster.git
+      repoURL: https://github.com/wevanscfi/homelab.git
       targetRevision: HEAD
 ```
+
 This will create a new ArgoCd project, a K8s namespace for your project, and an ArgoCD application utilizing the source that you specify. It is recommended to utilize a separate gitops repo as your source.
 
 ### View the results of applying your projects state
@@ -25,13 +26,50 @@ You can see the result of your projects apply by visting http://argocd.gke.wevan
 
 ### Shipping updates
 It is recommended that you set up a CI pipeline to build your projects artifacts, and to update your gitops repo. You can utilize a third party CI service such as: circleCI, semaphoreCI, github actions, etc.. 
-You may also utilize the installation of drone running on this cluster. You can visit https://drone.gke.wevans.io to setup drone OAuth to github and setup your project.
+
+You may also utilize the installation of drone running on this cluster. You can visit https://drone.gke.wevans.io to setup drone OAuth to github and start building your project.
 
 ### Advanced project support / configuration
 Contact admin@wevans.io for support of the following advanced features. Better support and documentation is coming in the future.
 - Working with private git repos, docker image repos, or other artifact stores.
 - Secrets management
 - Database operators 
+
+# Cluster services
+## Ingress
+For cluster ingress, this homelab utilized the ingress-nginx controller. The controllers ingress class name is `nginx` and is the default cluster ingress class.
+
+## Cert-Manager
+cert-manager is installed to handle automatic issue and rotation of certificates. You will need to annotate your ingress to let it know which issuer to use.
+
+The recommended issuer is letsencrypt.
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+```
+
+## Linkerd
+Linkerd provides mTLS and service mesh functionality within the cluster. Visit the [linkerd doc site](https://linkerd.io/2.12/overview/) for more information.
+To opt into linkerd, you will need to annotate your namespace or pods. This annotation will tell linkerd to set up the proxy sidecars for your workload.
+```
+podAnnotations:
+  linkerd.io/inject: enabled
+```
+
+## Prometheus
+This homelab utilizes kube-prom-stack for observability.
+
+Visit http://grafana.gke.wevans.io for the dashboard.
+
+## Sealed-Secrets
+Sealed-secrets is installed to handle asymetric encryption of secrets that need to be committed into source control. 
+This is a development use case, and it is not recommended to utilize this method in a production environment.
+
+## Vault
+Vault is installed to handle storage of secrets outside of source control.
 
 # Cluster Installation and Administration
 You will need a fork of this repo for your own homelab. You will be modifying configuration such as cluster base domain, and generating your own sealed secrets.
@@ -75,7 +113,7 @@ argocd login argocd.gke.wevans.io
 ```
 
 ## Linkerd
-The linkerd service is split into four applications; linkerd-crds, linkerd-bootstrap, linkerd, and linkerd viz.
+The linkerd service is split into four applications; linkerd-crds, linkerd-bootstrap, linkerd, and linkerd-viz.
 
 The CRDs are automatically installed, however we will need to use the clusters sealed secrets service to manage a new trust anchor root CA for linkerd.
 
@@ -101,39 +139,4 @@ argocd app sync linkerd-viz
 linkerd check
 linkerd viz dashboard
 ```
-
-# Cluster services
-## Ingress
-For cluster ingress, this homelab utilized the ingress-nginx controller. The default cluster ingress className is `nginx`.
-
-## Cert-Manager
-cert-manager is installed to handle automatic issue and rotation of certificates. You will need to annotate your ingress to let it know which issuer to use.
-
-The default is to use the letsencrypt issuer.
-```
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-```
-
-## Prometheus
-This homelab utilizes kube-prom-stack for observability. This stack is not automatically created, so it will need to be synced from the argocd ui or cli.
-```
-argocd app sync prometheus
-```
-
-To access the grafana dashboard, get the admin user secret
-```
-make grafana-password
-```
-
-Then visit http://grafana.gke.wevans.io
-
-## Sealed-Secrets
-sealed-secrets is installed to handle asymetric encryption of secrets that need to be committed into source control. This is a Development use case, and it is not recommended to utilize this method in a production environment.
-
-## Vault
-vault is installed to handle storage of secrets that may not need to be committed into source control. 
 
