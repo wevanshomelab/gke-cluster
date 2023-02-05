@@ -18,7 +18,7 @@ argo-cd:
       url: "https://argocd.gke.wevans.io"
       repositories: |
         - type: git
-          url: https://github.com/wevanscfi/homelab.git
+          url: https://github.com/wevanshomelab/gke-cluster.git
         - name: argo-helm
           type: helm
           url: https://argoproj.github.io/argo-helm

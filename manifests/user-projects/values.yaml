@@ -17,7 +17,7 @@ projects:
   - name: wevans
     source:
       path: manifests/wevans
-      repoURL: https://github.com/wevanscfi/homelab.git
+      repoURL: https://github.com/wevanshomelab/gke-cluster.git
       targetRevision: HEAD
 
 

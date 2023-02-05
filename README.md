@@ -6,7 +6,7 @@ This is a project for getting a small personal K8s cluster set up in Google Clou
 Git added to the github org `WevansHomeLab` for OAuth access to cluster services
 
 ### Create a new project
-Create a pull request to add a new project for your self under [user-projects](https://github.com/wevanscfi/homelab/blob/main/manifests/user-projects/values.yaml) 
+Create a pull request to add a new project for your self under [user-projects](https://wevanshomelab/gke-cluster/blob/main/manifests/user-projects/values.yaml) 
 
 Example:
 ```
@@ -14,7 +14,7 @@ projects:
   - name: wevans
     source:
       path: manifests/wevans
-      repoURL: https://github.com/wevanscfi/homelab.git
+      repoURL: https://wevanshomelab/gke-cluster.git
       targetRevision: HEAD
 ```
 This will create a new ArgoCd project, a K8s namespace for your project, and an ArgoCD application utilizing the source that you specify. It is recommended to utilize a separate gitops repo for your project as your source.

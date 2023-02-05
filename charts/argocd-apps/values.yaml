@@ -36,7 +36,7 @@ argocd-apps:
       project: argocd
       source:
         path: charts/argocd
-        repoURL: https://github.com/wevanscfi/homelab.git
+        repoURL: https://github.com/wevanshomelab/gke-cluster.git
         targetRevision: HEAD
       syncPolicy:
         automated:
@@ -50,7 +50,7 @@ argocd-apps:
       project: argocd
       source:
         path: charts/argocd-apps
-        repoURL: https://github.com/wevanscfi/homelab.git
+        repoURL: https://github.com/wevanshomelab/gke-cluster.git
         targetRevision: HEAD
       syncPolicy:
         automated:
@@ -64,7 +64,7 @@ argocd-apps:
       project: argocd
       source:
         path: manifests/user-projects
-        repoURL: https://github.com/wevanscfi/homelab.git
+        repoURL: https://github.com/wevanshomelab/gke-cluster.git
         targetRevision: HEAD
       syncPolicy:
         automated:
@@ -78,7 +78,7 @@ argocd-apps:
       project: argocd
       source:
         path: manifests/cluster-services
-        repoURL: https://github.com/wevanscfi/homelab.git
+        repoURL: https://github.com/wevanshomelab/gke-cluster.git
         targetRevision: HEAD
       syncPolicy:
         automated:
