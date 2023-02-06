@@ -5,7 +5,6 @@ kube-prometheus-stack:
   nodeExporter:
     enabled: true
   grafana:
-    adminPassword:
     ingress:
       enabled: true
       ingressClassName: nginx

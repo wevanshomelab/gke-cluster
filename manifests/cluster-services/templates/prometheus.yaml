@@ -17,6 +17,9 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       skipCrds: true
+      parameters:
+        - name: kube-prometheus-stack.grafana.adminPassword
+          value: null
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
