@@ -42,3 +42,12 @@ set-drone-creds:
 	  --dry-run=client -oyaml | \
 	kubeseal --controller-name=sealed-secrets -oyaml - > charts/drone/templates/credentials.yaml
 
+set-grafana-creds:
+	@read -p 'Github Client ID: ' githubid && \
+	read -sp 'Github Client Secret: ' githubsecret && \
+	kubectl -n monitoring create secret generic grafana-oauth \
+          --from-literal=GF_AUTH_GITHUB_CLIENT_ID=$${githubid} \
+          --from-literal=GF_AUTH_GITHUB_CLIENT_SECRET=$${githubsecret} \
+	  --dry-run=client -oyaml | \
+	kubeseal --controller-name=sealed-secrets -oyaml - > charts/grafana-bootstrap/templates/credentials.yaml
+
