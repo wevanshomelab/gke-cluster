@@ -17,7 +17,7 @@ kube-prometheus-stack:
           hosts:
             - grafana.gke.wevans.io
     envFromSecrets:
-      - grafana-oauth
+      - name: grafana-oauth
     grafana.ini:
       auth.github:
         enabled: true
