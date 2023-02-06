@@ -19,6 +19,8 @@ kube-prometheus-stack:
     envFromSecrets:
       - name: grafana-oauth
     grafana.ini:
+      server:
+        root_url: https://%(domain)s:%(http_port)s/grafana/
       auth.github:
         enabled: true
         allow_sign_up: true
