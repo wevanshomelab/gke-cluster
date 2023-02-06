@@ -57,7 +57,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: grafana-bootstrap
-  namespace: monitoring
+  namespace: argocd
 spec:
   project: cluster-services
   source:
