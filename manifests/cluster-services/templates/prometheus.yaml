@@ -10,6 +10,7 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
   project: cluster-services
   source:
     path: charts/prometheus
@@ -20,6 +21,12 @@ spec:
       parameters:
         - name: kube-prometheus-stack.grafana.adminPassword
           value: null
+  ignoreDifferences:
+  - group: ""
+    kind: Secret
+    name: prometheus-grafana
+    jsonPointers:
+    - /data/admin-password
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
