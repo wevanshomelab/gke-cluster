@@ -31,7 +31,7 @@ argo-cd:
               clientID: fe519b758cce7aa69b42
               clientSecret: $dex.github.clientSecret
               orgs:
-                - name: WevansHomeLab
+                - name: wevanshomelab
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
