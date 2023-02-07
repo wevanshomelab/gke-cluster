@@ -1,4 +1,7 @@
 kube-prometheus-stack:
+  prometheusOperator:
+    admissionWebhooks:
+      failurePolicy: Fail
   prometheus-node-exporter:
     hostRootFsMount:
       enabled: false
