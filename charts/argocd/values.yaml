@@ -35,6 +35,6 @@ argo-cd:
     rbacConfig:
       policy.default: role:readonly
       policy.csv: |
-        g, WevansHomeLab:admins, role:admin
-        g, WevansHomeLab:users, role:readonly
+        g, wevanshomelab:admins, role:admin
+        g, wevanshomelab:users, role:readonly
 
