@@ -11,12 +11,12 @@ spec:
     targetRevision: 0.23.0
     helm:
       parameters:
-        - name: vault.annotations.linkerd\.io\/inject
-          value: enabled
         - name: server.affinity
           value: ""
         - name: server.ha.enabled
           value: "true"
+        - name: server.annotations.linkerd\.io\/inject
+          value: enabled
         - name: server.ha.raft.config
           value: |
             ui = true
