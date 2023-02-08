@@ -13,7 +13,6 @@ spec:
       parameters:
         - name: vault.annotations.linkerd\.io\/inject
           value: enabled
-          value:
         - name: server.affinity
           value: ""
         - name: server.ha.enabled
