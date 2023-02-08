@@ -17,6 +17,8 @@ spec:
           value: "true"
         - name: server.ha.raft.enabled
           value: "true"
+        - name: server.serviceAccount.annotations.iam\.gke\.io\/gcp-service-account
+          value: "vault-gcpkms@homelab-376317.iam.gserviceaccount.com"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: vault
