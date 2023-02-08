@@ -15,6 +15,14 @@ spec:
           value: ""
         - name: server.ha.enabled
           value: "true"
+        - name: server.ha.config
+          value: |
+            seal "gcpckms" {
+               project     = "{{ .Values.spec.gcpProject }}"
+               region      = "global"
+               key_ring    = "vault-keyring"
+               crypto_key  = "vault-key"
+            }
         - name: server.ha.raft.enabled
           value: "true"
         - name: server.serviceAccount.annotations.iam\.gke\.io\/gcp-service-account
