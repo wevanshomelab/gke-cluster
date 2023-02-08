@@ -1,4 +1,5 @@
 spec:
+  gcpProject: homelab-376317
   cluster:
     baseDomain: gke.wevans.io
   destination:

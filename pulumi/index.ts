@@ -41,6 +41,36 @@ const gkeNat = new gcp.compute.RouterNat("gke-nat", {
     },
 });
 
+// Create the Required Firewall Rules
+const linkerdFirewall = new gcp.compute.Firewall("gke-linkerd-firewall", {
+    network: gkeNetwork.name,
+    allows: [
+        {
+            protocol: "tcp",
+            ports: [
+                "8443",
+                "8089",
+                "9443",
+            ],
+        },
+    ],
+    description: "Allow traffic on ports 8443, 8089, 9443 for linkerd control-plane components",
+    sourceRanges: ["10.100.0.0/28"],
+});
+
+const sealedSecretsFirewall = new gcp.compute.Firewall("gke-sealed-secrets-firewall", {
+    network: gkeNetwork.name,
+    allows: [
+        {
+            protocol: "tcp",
+            ports: [
+                "8080",
+            ],
+        },
+    ],
+    description: "Allow traffic on ports 8080 for cluster sealed secrets",
+    sourceRanges: ["10.100.0.0/28"],
+});
 
 
 // Create a new GKE cluster
@@ -128,9 +158,35 @@ users:
       provideClusterInfo: true
 `;
 
+// Setup Vault KMS Resources
+const VaultServiceAccount = new gcp.serviceaccount.Account("VaultServiceAccount", {
+    accountId: "vault-gcpkms",
+    displayName: "Vault KMS for auto-unseal",
+});
+
+const VaultKeyRing = new gcp.kms.KeyRing("vault-keyring", {location: "global"});
+const VaultKey = new gcp.kms.CryptoKey("vault-key", {
+    keyRing: VaultKeyRing.id,
+    rotationPeriod: "100000s",
+});
+
+const VaultKeyRingIAMBinding = new gcp.kms.KeyRingIAMBinding("vault-keyring-binding", {
+    keyRingId: VaultKeyRing.id,
+    role: "roles/owner",
+    members: [ pulumi.interpolate `serviceAccount:${VaultServiceAccount.email}`]
+});
+
+const VaultWorkLoadIdentityIAMBinding = new gcp.serviceaccount.IAMBinding("vault-workload-binding", {
+    serviceAccountId: VaultServiceAccount.name,
+    role: "roles/iam.workloadIdentityUser",
+    members: [ pulumi.interpolate `serviceAccount:${gcpProject}.svc.id.goog[vault/vault]` ]
+});
+
+
 // Export some values for use elsewhere
 export const networkName = gkeNetwork.name;
 export const networkId = gkeNetwork.id;
 export const clusterName = gkeCluster.name;
 export const clusterId = gkeCluster.id;
 export const kubeconfig = clusterKubeconfig;
+export const vaultSa = VaultServiceAccount.email
