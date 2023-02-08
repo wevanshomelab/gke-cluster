@@ -30,8 +30,8 @@ spec:
             seal "gcpckms" {
                project     = "{{ .Values.spec.gcpProject }}"
                region      = "global"
-               key_ring    = "vault-keyring"
-               crypto_key  = "vault-key"
+               key_ring    = "vault-keyring-b8da431"
+               crypto_key  = "vault-key-0e0b4d1"
             }
         - name: server.ha.raft.enabled
           value: "true"
