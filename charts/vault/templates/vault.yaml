@@ -17,4 +17,10 @@ spec:
   config:
     storage:
       gcs:
+        bucket: {{ .Values.gcp.storageBucket }}
         ha_enabled: "true"
+      listener:
+        tcp:
+          address: "0.0.0.0:8200"
+      api_addr: http://vault.default:8200
+      ui: true
