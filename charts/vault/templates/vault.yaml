@@ -1,0 +1,23 @@
+apiVersion: "vault.banzaicloud.com/v1alpha1"
+kind: "Vault"
+metadata:
+  name: "vault"
+    spec:
+      annotations:
+          example.com/test: "something"
+spec:
+  size: 3
+  image: vault:0.10.1
+  bankVaultsImage: banzaicloud/bank-vaults:master
+  serviceAccount: vault
+  unsealConfig:
+    google:
+      kmsKeyRing: {{ .Values.gcp.keyRing }}
+      kmsCryptoKey: {{ .Values.gcp.crytoKey }}
+      kmsLocation: {{ .Values.gcp.location }}
+      kmsProject: {{ .Values.gcp.project }}
+
+  config:
+    storage:
+      gcs:
+        ha_enabled: "true"

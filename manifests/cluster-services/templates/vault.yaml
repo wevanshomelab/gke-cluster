@@ -27,47 +27,22 @@ metadata:
 spec:
   project: cluster-services
   source:
-    repoURL: https://helm.releases.hashicorp.com
-    chart: vault
-    targetRevision: 0.23.0
+    path: charts/vault
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       parameters:
-        - name: server.affinity
-          value: ""
-        - name: server.ha.enabled
-          value: "true"
         - name: server.annotations.linkerd\.io\/inject
           value: enabled
-        - name: server.ha.raft.config
-          value: |
-            ui = true
-            listener "tcp" {
-              tls_disable = 1
-              address = "[::]:8200"
-              cluster_address = "[::]:8201"
-            }
-            storage "raft" {
-              path = "/vault/data"
-              retry_join {
-                leader_api_addr = "http://vault-0.vault-internal:8200"
-              }
-              retry_join {
-                leader_api_addr = "http://vault-1.vault-internal:8200"
-              }
-              retry_join {
-                leader_api_addr = "http://vault-2.vault-internal:8200"
-              }
-            }
-            service_registration "kubernetes" {}
-            seal "gcpckms" {
-               project     = "{{ .Values.spec.gcpProject }}"
-               region      = "global"
-               key_ring    = "vault-keyring-b8da431"
-               crypto_key  = "vault-key-0e0b4d1"
-            }
-        - name: server.ha.raft.enabled
-          value: "true"
-        - name: server.serviceAccount.annotations.iam\.gke\.io\/gcp-service-account
+        - name: gcp.keyRing
+          value: vault-keyring-b8da431
+        - name: gcp.cryptoKey
+          value: vault-key-0e0b4d1
+        - name: gcp.location
+          value: global
+        - name: gcp.project
+          value: {{ .Values.spec.gcpProject }}
+        - name: gcp.serviceAccount
           value: vault-gcpkms@{{ .Values.spec.gcpProject }}.iam.gserviceaccount.com
   destination:
     server: {{ .Values.spec.destination.server }}
@@ -76,12 +51,12 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: admissionregistration.k8s.io
-      kind: ValidatingWebhookConfiguration
-      jqPathExpressions:
-        - .webhooks[]?.clientConfig.caBundle
-    - group: admissionregistration.k8s.io
-      kind: MutatingWebhookConfiguration
-      jqPathExpressions:
-        - .webhooks[]?.clientConfig.caBundle
+  #ignoreDifferences:
+    #- group: admissionregistration.k8s.io
+      #kind: ValidatingWebhookConfiguration
+      #jqPathExpressions:
+        #- .webhooks[]?.clientConfig.caBundle
+    #- group: admissionregistration.k8s.io
+      #kind: MutatingWebhookConfiguration
+      #jqPathExpressions:
+        #- .webhooks[]?.clientConfig.caBundle
