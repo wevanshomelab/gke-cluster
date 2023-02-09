@@ -186,6 +186,12 @@ const VaultBucket = new gcp.storage.Bucket('vault-bucket', {
   location: gcpRegion
 });
 
+const VaultBucketBinding = new gcp.storage.BucketIAMBinding("vault-bucket-binding", {
+  bucket: VaultBucket.name,
+  role: "roles/storage.admin",
+  members: [ pulumi.interpolate `serviceAccount:${gcpProject}.svc.id.goog[vault/vault]` ]
+});
+
 // Export some values for use elsewhere
 export const networkName = gkeNetwork.name;
 export const networkId = gkeNetwork.id;
