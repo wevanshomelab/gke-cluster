@@ -38,8 +38,6 @@ spec:
           value: vault-keyring-b8da431
         - name: gcp.cryptoKey
           value: vault-key-0e0b4d1
-        - name: gcp.location
-          value: global
         - name: gcp.project
           value: {{ .Values.spec.gcpProject }}
         - name: gcp.serviceAccount

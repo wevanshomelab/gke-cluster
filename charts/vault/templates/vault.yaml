@@ -1,10 +1,7 @@
-apiVersion: "vault.banzaicloud.com/v1alpha1"
-kind: "Vault"
+apiVersion: vault.banzaicloud.com/v1alpha1
+kind: Vault
 metadata:
-  name: "vault"
-    spec:
-      annotations:
-          example.com/test: "something"
+  name: vault
 spec:
   size: 3
   image: vault:0.10.1
@@ -13,10 +10,9 @@ spec:
   unsealConfig:
     google:
       kmsKeyRing: {{ .Values.gcp.keyRing }}
-      kmsCryptoKey: {{ .Values.gcp.crytoKey }}
+      kmsCryptoKey: {{ .Values.gcp.cryptoKey }}
       kmsLocation: {{ .Values.gcp.location }}
       kmsProject: {{ .Values.gcp.project }}
-
   config:
     storage:
       gcs:
