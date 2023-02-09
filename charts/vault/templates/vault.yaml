@@ -16,18 +16,14 @@ spec:
       storageBucket: {{ .Values.gcp.storageBucket }}
   config:
     storage:
-      gcs:
-        bucket: {{ .Values.gcp.storageBucket }}
-        ha_enabled: "true"
+      raft:
+        path: /vault/data
+        retry_join:
+          leader_api_addr: "http://vault:8200"
       listener:
         tcp:
           address: "[::]:8200"
           cluster_address: "[::]:8201"
       api_addr: http://vault.default:8200
       ui: true
-      storage:
-        raft:
-          path: /vault/data
-          retry_join:
-            leader_api_addr: "http://vault:8200"
 
