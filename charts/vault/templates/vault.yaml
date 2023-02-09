@@ -13,6 +13,7 @@ spec:
       kmsCryptoKey: {{ .Values.gcp.cryptoKey }}
       kmsLocation: {{ .Values.gcp.location }}
       kmsProject: {{ .Values.gcp.project }}
+      storageBucket: {{ .Values.gcp.storageBucket }}
   config:
     storage:
       gcs:
