@@ -182,6 +182,9 @@ const VaultWorkLoadIdentityIAMBinding = new gcp.serviceaccount.IAMBinding("vault
     members: [ pulumi.interpolate `serviceAccount:${gcpProject}.svc.id.goog[vault/vault]` ]
 });
 
+const VaultBucket = new gcp.storage.Bucket('vault-bucket', {
+  location: gcpRegion
+});
 
 // Export some values for use elsewhere
 export const networkName = gkeNetwork.name;

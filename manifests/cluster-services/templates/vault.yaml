@@ -40,6 +40,8 @@ spec:
           value: vault-key-0e0b4d1
         - name: gcp.project
           value: {{ .Values.spec.gcpProject }}
+        - name: gcp.storageBucket
+          vaule: vault-bucket-4addadb
         - name: gcp.serviceAccount
           value: vault-gcpkms@{{ .Values.spec.gcpProject }}.iam.gserviceaccount.com
   destination:
