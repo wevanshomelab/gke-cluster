@@ -1,6 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: vault-operator
+  namespace: argocd
+spec:
+  project: cluster-services
+  source:
+    repoURL: https://kubernetes-charts.banzaicloud.com
+    chart: vault-operator
+    targetRevision: 1.18.0
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: vault
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: vault
   namespace: argocd
 spec:
