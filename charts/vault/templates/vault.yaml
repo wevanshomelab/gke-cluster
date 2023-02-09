@@ -18,8 +18,6 @@ spec:
     storage:
       raft:
         path: /vault/data
-        retry_join:
-          leader_api_addr: "http://vault:8200"
       listener:
         tcp:
           address: "[::]:8200"
