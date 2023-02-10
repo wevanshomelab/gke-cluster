@@ -32,7 +32,7 @@ spec:
       - name: admin
         rules: |
           # Read all
-          path "*"
+          path "sys/*"
           {
             capabilities = ["read", "list"]
           }
