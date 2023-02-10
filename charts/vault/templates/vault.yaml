@@ -36,15 +36,15 @@ spec:
           }
       - name: allow_user_secrets
         rules: |
-          path {{ printf "secret/data/{{identity.entity.id}}/*" }} {
+          path "{{ printf "secret/data/{{identity.entity.id}}/*" }}" {
             capabilities = ["create", "update", "patch", "read", "delete"]
           }
-          path {{ printf "secret/metadata/{{identity.entity.id}}/*" }} {
+          path "{{ printf "secret/metadata/{{identity.entity.id}}/*" }}" {
             capabilities = ["list"]
           }
       - name: allow_ns_secrets
         rules: |
-          path {{ printf "secret/data/{{identity.entity.aliases.${ accessor `kubernetes/` }.metadata.service_account_namespace}}/*" }} {
+          path "{{ printf "secret/data/{{identity.entity.aliases.${ accessor `kubernetes/` }.metadata.service_account_namespace}}/*" }}" {
             capabilities = ["create", "read", "update", "delete", "list"]
           }
     auth:
