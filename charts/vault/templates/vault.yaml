@@ -4,7 +4,7 @@ metadata:
   name: vault
 spec:
   size: 3
-  image: vault:0.10.1
+  image: vault:1.12.3
   bankVaultsImage: banzaicloud/bank-vaults:master
   serviceAccount: vault
   unsealConfig:
@@ -117,8 +117,10 @@ spec:
           organization: wevanshomelab
         map:
           teams:
-            admins: admin
+            admins: allow_all_secrets
             users: allow_user_secrets
+          users:
+            wevanscfi: admin
       - type: kubernetes
         roles:
           - name: default
