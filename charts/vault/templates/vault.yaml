@@ -111,10 +111,8 @@ spec:
           organization: wevanshomelab
         map:
           teams:
-            admins: allow_all_secrets
+            admins: admin
             users: allow_user_secrets
-          users:
-            wevanscfi: admin
       - type: kubernetes
         roles:
           - name: default
