@@ -31,6 +31,12 @@ spec:
     policies:
       - name: admin
         rules: |
+          # Read all
+          path "*"
+          {
+            capabilities = ["read", "list"]
+          }
+
           # Read system health check
           path "sys/health"
           {
