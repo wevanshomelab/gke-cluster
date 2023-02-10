@@ -42,11 +42,6 @@ spec:
           path "{{ printf "secret/metadata/{{identity.entity.id}}/*" }}" {
             capabilities = ["list"]
           }
-      - name: allow_ns_secrets
-        rules: |
-          path "{{ printf "secret/data/{{identity.entity.aliases.${ accessor `kubernetes/` }.metadata.service_account_namespace}}/*" }}" {
-            capabilities = ["create", "read", "update", "delete", "list"]
-          }
     auth:
       - type: github
         options:
@@ -64,7 +59,7 @@ spec:
           - name: default
             bound_service_account_names: default
             bound_service_account_namespaces: default
-            policies: allow_ns_secrets
+            policies: allow_user_secrets
             ttl: 1h
     secrets:
       - path: secret
