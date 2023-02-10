@@ -27,4 +27,48 @@ spec:
         tls_key_file: /vault/tls/server.key
     api_addr: http://vault.default:8200
     ui: true
-
+  externalConfig:
+    policies:
+      - name: allow_all_secrets
+        rules: |
+          path "secret/*" {
+            capabilities = ["create", "read", "update", "delete", "list"]
+          }
+      - name: allow_user_secrets
+        rules: |
+          path {{ printf "secret/data/{{identity.entity.id}}/*" }} {
+            capabilities = ["create", "update", "patch", "read", "delete"]
+          }
+          path {{ printf "secret/metadata/{{identity.entity.id}}/*" }} {
+            capabilities = ["list"]
+          }
+      - name: allow_ns_secrets
+        rules: |
+          path {{ printf "secret/data/{{identity.entity.aliases.${ accessor `kubernetes/` }.metadata.service_account_namespace}}/*" }} {
+            capabilities = ["create", "read", "update", "delete", "list"]
+          }
+    auth:
+      - type: github
+        options:
+          listing_visibility: "unauth"
+        config:
+          organization: wevanshomelab
+        map:
+          teams:
+            admins: allow_user_secrets
+            users: allow_user_secrets
+          users:
+            wevanscfi: allow_all_secrets
+      - type: kubernetes
+        roles:
+          - name: default
+            bound_service_account_names: default
+            bound_service_account_namespaces: default
+            policies: allow_ns_secrets
+            ttl: 1h
+    secrets:
+      - path: secret
+        type: kv
+        description: General secrets.
+        options:
+          version: 2

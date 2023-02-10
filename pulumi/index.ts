@@ -189,7 +189,7 @@ const VaultBucket = new gcp.storage.Bucket('vault-bucket', {
 const VaultBucketBinding = new gcp.storage.BucketIAMBinding("vault-bucket-binding", {
   bucket: VaultBucket.name,
   role: "roles/storage.admin",
-  members: [ pulumi.interpolate `serviceAccount:${gcpProject}.svc.id.goog[vault/vault]` ]
+  members: [ pulumi.interpolate `serviceAccount:${VaultServiceAccount.email}`]
 });
 
 // Export some values for use elsewhere
@@ -199,3 +199,4 @@ export const clusterName = gkeCluster.name;
 export const clusterId = gkeCluster.id;
 export const kubeconfig = clusterKubeconfig;
 export const vaultSa = VaultServiceAccount.email
+
