@@ -51,3 +51,10 @@ set-grafana-creds:
 	  --dry-run=client -oyaml | \
 	kubeseal --controller-name=sealed-secrets -oyaml - > charts/grafana-bootstrap/templates/credentials.yaml
 
+set-github-token:
+	@read -p 'Project: ' project && \
+	read -p 'Github Token: ' githubtoken && \
+	kubectl -n monitoring create secret generic $${project}-github-token \
+          --from-literal=TOKEN=$${githubtoken} \
+	  --dry-run=client -oyaml | \
+	kubeseal --controller-name=sealed-secrets -oyaml - > manifests/$${project}/templates/github_token.yaml

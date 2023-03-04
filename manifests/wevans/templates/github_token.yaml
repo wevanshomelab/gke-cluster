@@ -1,0 +1,15 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: wevans-github-token
+  namespace: monitoring
+spec:
+  encryptedData:
+    TOKEN: AgBFb4PFcvtLW5uTgf2rjd8jcpzba56+wMAGXRjl3yQLKrCMCWQybjij86ZI6Mg++zdHAkH6A0gZ+Fc+LgEsbJeTcSc+yO3UVfCsm4NJ4Tfm9TWr6qaEIAclH99eXeBwQM8c8Ow9KOPtpQQniHTe1dDQ41Ijli4TW6bGjLqqHw/yta017s9h+UViTeCqA2SgBsUf82C4DrdncQ1ljeJ78w3Ft8L5OOQqSl2qoYmrDAd/fvcFWppQDGQTuk69hppxZhG3VaIepxp54g95XKY7HWgP193BFVDreZChrpBchsuG7VgVg981CCaRLqGiC9FWdJtu/n9rOlagKHWB0WI/j1NwwY3JxhH34Fe/QncbzV4NyOudWZoQpOJodiiOjWvcyP8KXMwhi61XRCRfPYeV0xy0Ig8g1Oh1PKzK+nlzkVNGG043rC7+UN4tEG4pBpBICVKc5hFs17Va4e7kafff/8uMKzxlYWyI3dPq9G9UWmWlpwH5R3c5+Se2NfyPRkiVhXgg4OWdvczmFAoGTcjkyKj5KuiGN3nICkAfIaTdtvWwUJR9UQh2NWnJIFlyVLhy1DP8H9gm/sYZf1WN+KuOi4w6FyGVZHKwg/TcIE/telIKW01mz83cdu7Y80wX47N2OdT6ie9CqKVAYQ4RQZZG+WtnLxhIquWSaabGmIhb17TJ6L7pogI2amTJCmNRH5pSvWCaWky/3Mn4PFFsDmXkO6ABasQwr36ASODC4qNgF2swVcCPJWrn392T
+  template:
+    metadata:
+      creationTimestamp: null
+      name: wevans-github-token
+      namespace: monitoring
+

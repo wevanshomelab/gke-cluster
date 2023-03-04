@@ -8,7 +8,10 @@ spec:
       github:
         owner: wevanscfi
         repo: blog
-      requeueAfterSeconds: 1800
+        tokenRef:
+          secretName: wevans-github-token
+          key: token
+      requeueAfterSeconds: 300
   template:
     metadata:
       name: '{{`blog-{{branch_slug}}`}}'
