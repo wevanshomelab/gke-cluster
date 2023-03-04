@@ -10,7 +10,7 @@ spec:
         repo: blog
         tokenRef:
           secretName: wevans-github-token
-          key: token
+          key: TOKEN
       requeueAfterSeconds: 300
   template:
     metadata:
