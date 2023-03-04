@@ -8,12 +8,10 @@ spec:
       github:
         owner: wevanscfi
         repo: blog
-        labels:
-        - qa
       requeueAfterSeconds: 1800
   template:
     metadata:
-      name: '{{`blog-{{branch}}-{{number}}`}}'
+      name: '{{`blog-{{branch_slug}}`}}'
       namespace: argocd
     spec:
       destination:
