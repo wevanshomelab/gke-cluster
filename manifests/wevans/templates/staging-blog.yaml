@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: staging-blog
+spec:
+  generators:
+  - pullRequest:
+      github:
+        owner: wevanscfi
+        repo: blog
+        labels:
+        - qa
+      requeueAfterSeconds: 1800
+  template:
+    metadata:
+      name: blog-{{branch}}-{{number}}
+      namespace: argocd
+    spec:
+      destination:
+        namespace: wevans
+        server: "{{ .Values.spec.destination.server }}"
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+      project: wevans
+      source:
+        path: charts
+        repoURL: https://github.com/wevanscfi/blog.git
+        targetRevision: main
+        helm:
+          parameters:
+            - name: image.tag
+              value: "pull-{{head_sha}}"
+            - name: ingress.enabled
+              value: 'true'
+            - name: ingress.className
+              value: nginx
+            - name: ingress.hosts[0].host
+              value: blog-{{branch}}.{{ .Values.spec.cluster.baseDomain }}
+            - name: ingress.tls[0].hosts[0]
+              value: blog-{{branch}}.{{ .Values.spec.cluster.baseDomain }}
+            - name: ingress.tls[0].secretName
+              value: blog-tls
+            - name: ingress.issuer
+              value: letsencrypt
+            - name: application.env.base_host
+              value: blog-{{branch}}.gke.wevans.io
+          valueFiles:
+            - values.yaml

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: blog
+  name: production-blog
   namespace: argocd
 spec:
   destination:
@@ -32,6 +32,6 @@ spec:
         - name: ingress.issuer
           value: letsencrypt
         - name: application.env.base_host
-          value: rails.gke.wevans.io
+          value: blog.gke.wevans.io
       valueFiles:
         - values.yaml
