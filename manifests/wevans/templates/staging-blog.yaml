@@ -13,12 +13,12 @@ spec:
       requeueAfterSeconds: 1800
   template:
     metadata:
-      name: {{`blog-{{branch}}-{{number}}`}}
+      name: '{{`blog-{{branch}}-{{number}}`}}'
       namespace: argocd
     spec:
       destination:
         namespace: wevans
-        server: "{{ .Values.spec.destination.server }}"
+        server: '{{ .Values.spec.destination.server }}'
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
@@ -30,20 +30,20 @@ spec:
         helm:
           parameters:
             - name: image.tag
-              value: {{`{{head_sha}}`}}
+              value: '{{`{{head_sha}}`}}'
             - name: ingress.enabled
               value: 'true'
             - name: ingress.className
               value: nginx
             - name: ingress.hosts[0].host
-              value: blog-{{`{{branch_slug}}`}}.{{ .Values.spec.cluster.baseDomain }}
+              value: 'blog-{{`{{branch_slug}}`}}.{{ .Values.spec.cluster.baseDomain }}'
             - name: ingress.tls[0].hosts[0]
-              value: blog-{{`{{branch_slug}}`}}.{{ .Values.spec.cluster.baseDomain }}
+              value: 'blog-{{`{{branch_slug}}`}}.{{ .Values.spec.cluster.baseDomain }}'
             - name: ingress.tls[0].secretName
               value: blog-tls
             - name: ingress.issuer
               value: letsencrypt
             - name: application.env.base_host
-              value: blog-{{`{{branch_slug}}`}}.gke.wevans.io
+              value: 'blog-{{`{{branch_slug}}`}}.gke.wevans.io'
           valueFiles:
             - values.yaml
