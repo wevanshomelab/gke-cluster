@@ -54,7 +54,7 @@ set-grafana-creds:
 set-github-token:
 	@read -p 'Project: ' project && \
 	read -p 'Github Token: ' githubtoken && \
-	kubectl -n monitoring create secret generic $${project}-github-token \
+	kubectl -n argocd create secret generic $${project}-github-token \
           --from-literal=TOKEN=$${githubtoken} \
 	  --dry-run=client -oyaml | \
 	kubeseal --controller-name=sealed-secrets -oyaml - > manifests/$${project}/templates/github_token.yaml
