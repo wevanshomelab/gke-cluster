@@ -32,7 +32,7 @@ spec:
       ignoreDifferences:
         - group: ""
           kind: Secret
-          name: '{{`blog-{{branch_slug}}`-postgresql}}'
+          name: '{{`blog-{{branch_slug}}-postgresql`}}'
           jsonPointers:
             - /data/postgres-password
       source:
