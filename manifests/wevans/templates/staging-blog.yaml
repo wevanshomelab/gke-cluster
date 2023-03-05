@@ -27,7 +27,14 @@ spec:
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
+          - RespectIgnoreDifferences=true
       project: wevans
+      ignoreDifferences:
+        - group: ""
+          kind: Secret
+          name: '{{`blog-{{branch_slug}}`-postgresql}}'
+          jsonPointers:
+            - /data/postgres-password
       source:
         path: charts
         repoURL: https://github.com/wevanscfi/blog.git
