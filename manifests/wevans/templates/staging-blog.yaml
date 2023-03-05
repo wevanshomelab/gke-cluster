@@ -13,7 +13,7 @@ spec:
         tokenRef:
           secretName: wevans-github-token
           key: TOKEN
-      requeueAfterSeconds: 300
+      requeueAfterSeconds: 60
   template:
     metadata:
       name: '{{`blog-{{branch_slug}}`}}'
