@@ -31,6 +31,7 @@ spec:
         repoURL: https://github.com/wevanscfi/blog.git
         targetRevision: '{{`{{head_sha}}`}}'
         helm:
+          releaseName: '{{`blog-{{branch_slug}}`}}'
           parameters:
             - name: image.tag
               value: '{{`{{head_sha}}`}}'
