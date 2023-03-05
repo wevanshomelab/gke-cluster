@@ -8,6 +8,8 @@ spec:
       github:
         owner: wevanscfi
         repo: blog
+        labels:
+          - qa
         tokenRef:
           secretName: wevans-github-token
           key: TOKEN
