@@ -23,6 +23,8 @@ spec:
         namespace: wevans
         server: '{{ .Values.spec.destination.server }}'
       syncPolicy:
+        automated:
+          selfHeal: true
         syncOptions:
           - CreateNamespace=true
       project: wevans
@@ -44,7 +46,7 @@ spec:
             - name: ingress.tls[0].hosts[0]
               value: 'blog-{{`{{branch_slug}}`}}.{{ .Values.spec.cluster.baseDomain }}'
             - name: ingress.tls[0].secretName
-              value: blog-tls
+              value: '{{`blog-{{branch_slug}}-tls`}}'
             - name: ingress.issuer
               value: letsencrypt
             - name: application.env.base_host
