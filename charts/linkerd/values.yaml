@@ -2,6 +2,10 @@ linkerd-control-plane:
   proxyInit:
     privileged: true
     runAsRoot: true
+    resources:
+      cpu:
+        request: ""
+        limit: ""
   identityTrustAnchorsPEM: |-
     -----BEGIN CERTIFICATE-----
     MIIBjTCCATOgAwIBAgIQTeR50Zqr0MW7OGL7JXlyIzAKBggqhkjOPQQDAjAlMSMw
