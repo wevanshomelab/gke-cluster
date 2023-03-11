@@ -1,5 +1,9 @@
 kube-prometheus-stack:
   prometheusOperator:
+    prometheusConfigReloader:
+      resources:
+        requests:
+          cpu: 10m
     admissionWebhooks:
       certManager:
         enabled: true
@@ -15,12 +19,12 @@ kube-prometheus-stack:
     alertmanagerSpec:
       resources:
         requests:
-          cpu: 100m
+          cpu: 10m
   prometheus:
     prometheusSpec:
       resources:
         requests:
-          cpu: 100m
+          cpu: 50m
   grafana:
     ingress:
       enabled: true
