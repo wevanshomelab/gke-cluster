@@ -1,15 +1,5 @@
 kube-prometheus-stack:
   prometheusOperator:
-    alertmanager:
-      alertmanagerSpec:
-        resources:
-          requests:
-            cpu: ""
-    prometheus:
-      prometheusSpec:
-        resources:
-          requests:
-            cpu: 50m
     admissionWebhooks:
       patch:
         enabled: false
@@ -19,6 +9,16 @@ kube-prometheus-stack:
       enabled: false
   nodeExporter:
     enabled: true
+  alertmanager:
+    alertmanagerSpec:
+      resources:
+        requests:
+          cpu: ""
+  prometheus:
+    prometheusSpec:
+      resources:
+        requests:
+          cpu: 50m
   grafana:
     ingress:
       enabled: true
