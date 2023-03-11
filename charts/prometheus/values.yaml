@@ -1,6 +1,8 @@
 kube-prometheus-stack:
   prometheusOperator:
     admissionWebhooks:
+      certManager:
+        enabled: true
       patch:
         enabled: false
       failurePolicy: Fail
