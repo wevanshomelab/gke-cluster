@@ -13,7 +13,7 @@ kube-prometheus-stack:
     alertmanagerSpec:
       resources:
         requests:
-          cpu: ""
+          cpu: 10m
   prometheus:
     prometheusSpec:
       resources:
