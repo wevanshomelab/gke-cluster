@@ -15,12 +15,12 @@ kube-prometheus-stack:
     alertmanagerSpec:
       resources:
         requests:
-          cpu: 10m
+          cpu: 100m
   prometheus:
     prometheusSpec:
       resources:
         requests:
-          cpu: 50m
+          cpu: 100m
   grafana:
     ingress:
       enabled: true
