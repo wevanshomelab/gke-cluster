@@ -1,5 +1,15 @@
 kube-prometheus-stack:
   prometheusOperator:
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          requests:
+            cpu: ""
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 50m
     admissionWebhooks:
       patch:
         enabled: false
