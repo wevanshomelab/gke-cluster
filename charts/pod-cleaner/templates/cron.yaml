@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pod-cleaner
+  namespace: pod-cleaner
+spec:
+  schedule: "*/5 * * * *"
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: pod-cleaner
+          namespace: kube-system
+        spec:
+          serviceAccountName: pod-cleaner
+          restartPolicy: Never
+          containers:
+          - name: pod-cleaner
+            imagePullPolicy: IfNotPresent
+            image: bitnami/kubectl
+            command:
+              - "/bin/sh"
+            args:
+              - "-c"
+              - "kubectl delete pods --field-selector status.phase=Failed -A --ignore-not-found=true"
