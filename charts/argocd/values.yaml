@@ -5,6 +5,12 @@
 ## Server
 argo-cd:
   server:
+    certificate:
+      enabled: true
+      domain: argocd.gke.wevans.io
+      issuerRef:
+        kind: ClusterIssuer
+        name: letsencrypt
     ingress:
       enabled: true
       annotations:
