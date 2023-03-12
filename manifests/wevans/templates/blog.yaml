@@ -15,7 +15,6 @@ spec:
   ignoreDifferences:
     - group: ""
       kind: Secret
-      name: '{{`blog-{{branch_slug}}-postgresql`}}'
       jsonPointers:
         - /data/postgres-password
   source:
@@ -25,7 +24,7 @@ spec:
     helm:
       parameters:
         - name: image.tag
-          value: "8421152a7e55a8693cd74f8ee58674bebe4b4b14"
+          value: "3d19f7aca071d0ccd7c14d533d7b3342f16e3f65"
         - name: ingress.enabled
           value: 'true'
         - name: ingress.className
