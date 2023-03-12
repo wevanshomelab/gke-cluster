@@ -8,7 +8,7 @@ argo-cd:
     certificate:
       enabled: true
       domain: argocd.gke.wevans.io
-      issuerRef:
+      issuer:
         kind: ClusterIssuer
         name: letsencrypt
     ingress:
