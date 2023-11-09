@@ -88,7 +88,7 @@ You will need a fork of this repo for your own homelab. You will be modifying co
 ## Create the GCP GKE Cluster and other resources
 From the infra dir
 ```
-gcloud login
+gcloud auth login
 pulumi up
 ```
 

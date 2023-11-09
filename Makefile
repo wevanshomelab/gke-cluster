@@ -14,7 +14,7 @@ grafana-password:
 
 generate-trust-anchor:
 	@test -f "trust.key" && echo "using exsisting key" || \
-	  step-cli certificate create root.linkerd.cluster.local trust.crt trust.key \
+	  step certificate create root.linkerd.cluster.local trust.crt trust.key \
 	  --profile root-ca \
 	  --no-password \
 	  --not-after 43800h \
