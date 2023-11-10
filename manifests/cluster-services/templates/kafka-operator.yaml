@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: strimzi-kafka-operator
+  namespace: argocd
+spec:
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: strimzi-kafka-operator
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  project: cluster-services
+  source:
+    chart: strimzi-kafka-operator
+    repoURL: oci://quay.io/strimzi-helm
+    targetRevision: 0.38.0
+
