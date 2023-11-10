@@ -17,4 +17,8 @@ spec:
     chart: strimzi-helm/strimzi-kafka-operator
     repoURL: quay.io
     targetRevision: 0.38.0
+    helm:
+      parameters:
+        - name: watchAnyNamespace
+          value: "true"
 
