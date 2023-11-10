@@ -15,6 +15,6 @@ spec:
   project: cluster-services
   source:
     chart: strimzi-helm/strimzi-kafka-operator
-    repoURL: oci://quay.io
+    repoURL: quay.io
     targetRevision: 0.38.0
 
