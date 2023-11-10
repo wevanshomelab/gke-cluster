@@ -7,5 +7,5 @@ sources:
   - https://argoproj.github.io/argo-helm
 dependencies: # A list of the chart requirements (optional)
   - name: argo-cd
-    version: 5.16.14
+    version: ~5.45.0
     repository: https://argoproj.github.io/argo-helm
